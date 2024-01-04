@@ -5,7 +5,20 @@ spring:
         - id: posts-routes
           uri: ${POSTS_ROUTE_URI:http://localhost:8000}
           predicates:
-            - Path=/posts/**
+            - Path=/db/**
           filters:
             - PrefixPath=/api
             - AddResponseHeader=X-Powered-By, TestGateway Service
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+  endpoint:
+    health:
+      show-details: always
+    gateway:
+      enabled: true
+
